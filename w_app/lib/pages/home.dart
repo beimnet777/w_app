@@ -12,8 +12,28 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(child: Text("The home page")),
+    return Scaffold(
+      body: Column(children: [
+        const Text("The home page"),
+        FloatingActionButton(
+          onPressed: () {
+            Navigator.pushNamed(context, "/loc");
+          },
+          child: const Icon(
+            Icons.move_to_inbox,
+            size: 30,
+          ),
+        ),
+        FloatingActionButton(
+          onPressed: () {
+            Navigator.pushNamed(context, "/");
+          },
+          child: const Icon(
+            Icons.move_to_inbox,
+            size: 30,
+          ),
+        )
+      ]),
     );
   }
 }

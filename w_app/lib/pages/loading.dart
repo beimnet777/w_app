@@ -15,6 +15,7 @@ class _LoadingState extends State<Loading> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("loading"),
+        centerTitle: true,
       ),
     );
   }

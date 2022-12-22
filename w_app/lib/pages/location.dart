@@ -14,6 +14,7 @@ class _LocationState extends State<Location> {
       backgroundColor: Colors.black,
       appBar: AppBar(
         title: const Text("Location"),
+        centerTitle: true,
       ),
     );
   }
