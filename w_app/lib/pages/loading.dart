@@ -10,6 +10,19 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
+  Future getData() async {
+    String name =
+        await Future.delayed(const Duration(seconds: 2), (() => "beimnet"));
+    print(name);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
