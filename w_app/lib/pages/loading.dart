@@ -15,15 +15,16 @@ class _LoadingState extends State<Loading> {
     // ignore: non_constant_identifier_names
     WorldTime Time =
         WorldTime(flag: "the", url: "Europe/Berlin", location: "berlin");
+
     await Time.getTime();
     time = Time.time as String;
-    Map data = {"time": time, "location": "berlin"};
+    Map data = {
+      "time": time,
+      "location": "berlin",
+      "isDayTime": Time.isDayTime
+    };
     // ignore: use_build_context_synchronously
     Navigator.pushReplacementNamed(context, "/home", arguments: data);
-
-    // setState(() {
-
-    // });
   }
 
   @override
