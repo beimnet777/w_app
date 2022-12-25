@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -12,28 +10,40 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
+    Map data = ModalRoute.of(context)?.settings.arguments as Map;
     return Scaffold(
-      body: Column(children: [
-        const Text("The home page"),
-        FloatingActionButton(
-          onPressed: () {
-            Navigator.pushNamed(context, "/loc");
-          },
-          child: const Icon(
-            Icons.move_to_inbox,
-            size: 30,
-          ),
+      body: SafeArea(
+        child: Center(
+          child: Column(children: [
+            const SizedBox(
+              height: 150,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/loc");
+                  },
+                  child: const Icon(
+                    Icons.map,
+                    size: 20,
+                  )),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Text(
+                data["location"],
+                style:
+                    const TextStyle(fontSize: 40, fontWeight: FontWeight.w300),
+              ),
+            ),
+            Text(
+              data["time"],
+              style: const TextStyle(fontSize: 40, fontWeight: FontWeight.w300),
+            ),
+          ]),
         ),
-        FloatingActionButton(
-          onPressed: () {
-            Navigator.pushNamed(context, "/");
-          },
-          child: const Icon(
-            Icons.move_to_inbox,
-            size: 30,
-          ),
-        )
-      ]),
+      ),
     );
   }
 }

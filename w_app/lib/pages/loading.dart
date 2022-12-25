@@ -1,7 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
+import 'package:w_app/world_time.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Loading extends StatefulWidget {
   const Loading({super.key});
@@ -11,17 +10,25 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
+  String time = "loading";
   Future getData() async {
-    String name =
-        await Future.delayed(const Duration(seconds: 2), (() => "beimnet"));
-    Response data =
-        await get(Uri.parse('https://jsonplaceholder.typicode.com/posts/1'));
-    print(name);
-    print(jsonDecode(data.body));
+    // ignore: non_constant_identifier_names
+    WorldTime Time =
+        WorldTime(flag: "the", url: "Europe/Berlin", location: "berlin");
+    await Time.getTime();
+    time = Time.time as String;
+    Map data = {"time": time, "location": "berlin"};
+    // ignore: use_build_context_synchronously
+    Navigator.pushReplacementNamed(context, "/home", arguments: data);
+
+    // setState(() {
+
+    // });
   }
 
   @override
-  void initState() {
+  initState() {
+    // ignore: todo
     // TODO: implement initState
     super.initState();
     getData();
@@ -30,10 +37,12 @@ class _LoadingState extends State<Loading> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("loading"),
-        centerTitle: true,
-      ),
+      backgroundColor: Colors.blue[500],
+      body: const SafeArea(
+          child: SpinKitWave(
+        color: Colors.white,
+        size: 50.0,
+      )),
     );
   }
 }
